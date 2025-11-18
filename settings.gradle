@@ -1,0 +1,5 @@
+rootProject.name = 'k6-scenario-builder'
+
+include 'load-test-core'
+include 'load-test-gradle-plugin'
+include 'sample-app'
