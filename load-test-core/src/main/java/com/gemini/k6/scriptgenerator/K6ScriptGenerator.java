@@ -6,8 +6,9 @@ import com.gemini.k6.apianalyzer.data.ApiMethodInfo;
 import com.gemini.k6.apianalyzer.data.ApiParameterInfo;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,9 +27,7 @@ public class K6ScriptGenerator {
             String scriptContent = generateControllerScript(controllerInfo);
             String fileName = toKebabCase(controllerInfo.getClassName().substring(controllerInfo.getClassName().lastIndexOf('.') + 1).replace("Controller", "")) + ".js";
             File outputFile = new File(outputDir, fileName);
-            try (FileWriter writer = new FileWriter(outputFile)) {
-                writer.write(scriptContent);
-            }
+            Files.writeString(outputFile.toPath(), scriptContent, StandardCharsets.UTF_8);
         }
     }
 
@@ -59,13 +58,19 @@ public class K6ScriptGenerator {
         functionBuilder.append(String.join(", ", params));
         functionBuilder.append(") {\n");
 
-        String url = "`" + path + "`";
-        // Handle Path Variables
-        for (ApiParameterInfo param : methodInfo.getParameters()) {
-            if ("PATH_VARIABLE".equals(param.getParamType())) {
-                url = url.replace("{ " + param.getName() + " }", "${ " + param.getName() + " }");
-            }
-        }
+                String url = "`" + path + "`";
+
+                // Handle Path Variables
+
+                for (ApiParameterInfo param : methodInfo.getParameters()) {
+
+                    if ("PATH_VARIABLE".equals(param.getParamType())) {
+
+                        url = url.replace("{" + param.getName() + "}", "${" + param.getName() + "}");
+
+                    }
+
+                }
 
         // Handle Query Parameters
         List<String> queryParams = methodInfo.getParameters().stream()
@@ -75,7 +80,7 @@ public class K6ScriptGenerator {
 
         if (!queryParams.isEmpty()) {
             url = url.substring(0, url.length() - 1); // remove trailing `
-            url += "?" + queryParams.stream().map(p -> p + "=${ " + p + " }").collect(Collectors.joining("&")) + "`";
+            url += "?" + queryParams.stream().map(p -> p + "=${" + p + "}").collect(Collectors.joining("&")) + "`";
         }
 
 
