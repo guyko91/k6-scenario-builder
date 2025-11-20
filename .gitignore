@@ -1,0 +1,39 @@
+### Java ###
+*.class
+*.log
+*.jar
+*.war
+*.nar
+*.zip
+*.tar.gz
+*.rar
+
+# IDE specific
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+### OS ###
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Spring Boot specific
+# (exclude application-secret.yml or *.env only if you need)
+.env
+

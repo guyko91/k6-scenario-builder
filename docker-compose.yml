@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  build:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/home/gradle/project
+      # Cache Gradle dependencies
+      - gradle-cache:/home/gradle/.gradle
+    command: gradle :sample-app:clean :sample-app:build --info
+
+volumes:
+  gradle-cache:

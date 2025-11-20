@@ -1,18 +1,24 @@
 plugins {
     id 'java'
+    id 'io.spring.dependency-management' version '1.1.4' apply false
 }
 
-allprojects {
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
     group = 'com.dw.k6.builder'
     version = '0.1.0-SNAPSHOT'
 
     repositories {
         mavenCentral()
     }
-}
 
-subprojects {
-    apply plugin: 'java'
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:3.2.0"
+        }
+    }
 
     java {
         toolchain {
@@ -24,3 +30,5 @@ subprojects {
         options.encoding = 'UTF-8'
     }
 }
+
+

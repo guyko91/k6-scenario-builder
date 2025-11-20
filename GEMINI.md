@@ -99,3 +99,12 @@
     -   루트 `build.gradle` 파일 생성 (Java 17, 공통 그룹/버전/저장소 설정).
     -   각 서브 프로젝트 (`load-test-core`, `load-test-gradle-plugin`, `sample-app`)의 디렉토리 구조 및 빈 `build.gradle` 파일 생성.
 -   **Java 버전 설정**: 회사 프로젝트와의 호환성을 위해 모든 서브 프로젝트의 Java 버전을 17로 설정.
+
+### **2025년 11월 20일**
+
+-   **Gradle 빌드 환경 설정 완료**: Docker를 이용한 멀티모듈 Gradle 프로젝트 빌드 환경을 성공적으로 구축. `gradlew` 스크립트 부재, 의존성 관리 문제, 중복 파일 오류 등 여러 빌드 관련 문제를 해결함.
+-   **API 엔드포인트 분석기 개발 완료 (Annotation Processor)**:
+    -   `load-test-core` 모듈에 `ApiAnalyzerProcessor` (Annotation Processor) 개발 완료.
+    -   `AutoService`를 이용하여 프로세서 자동 등록 및 실행 확인 완료.
+    -   `sample-app` 모듈의 Spring Boot 컨트롤러에 대한 메타데이터(`api-meta.json`)를 성공적으로 추출 및 생성 확인 완료.
+    -   API 메타데이터를 저장하기 위한 `ApiControllerInfo`, `ApiMethodInfo`, `ApiParameterInfo` 데이터 클래스 정의 완료.

@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.0'
+    id 'io.spring.dependency-management'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation project(':load-test-core')
+    annotationProcessor project(':load-test-core')
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+java {
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+}

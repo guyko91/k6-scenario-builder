@@ -1,7 +1,5 @@
 plugins {
     id 'java-library'
-    id 'org.springframework.boot' version '3.2.0'
-    id 'io.spring.dependency-management' version '1.1.4'
 }
 
 group = 'com.k6scenariobuilder'
@@ -17,8 +15,11 @@ repositories {
 }
 
 dependencies {
-    // Spring Boot Web for annotations like @RestController, @GetMapping
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // Spring Web for annotations like @RestController, @GetMapping
+    implementation 'org.springframework:spring-web'
+
+    // Jackson for JSON processing
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
 
     // Lombok for boilerplate reduction
     compileOnly 'org.projectlombok:lombok'
@@ -32,9 +33,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-// Ensure annotation processors are run
+// Ensure annotation processors are run and their output is correctly placed.
 tasks.named('compileJava') {
-    options.compilerArgs += [
-            '-Aorg.springframework.boot.loader.JarLauncher' // Example: if specific annotation processor arguments are needed
-    ]
+    options.annotationProcessorGeneratedSourcesDirectory = layout.buildDirectory.dir("generated/sources/annotationProcessor/java/main").get().asFile
 }
