@@ -111,3 +111,30 @@
     -   `sample-app` 모듈의 Spring Boot 컨트롤러에 대한 메타데이터(`api-meta.json`)를 성공적으로 추출 및 생성 확인 완료.
     -   API 메타데이터를 저장하기 위한 `ApiControllerInfo`, `ApiMethodInfo`, `ApiParameterInfo` 데이터 클래스 정의 완료.
     -   **테스트 코드 작성 완료**: `ApiAnalyzerProcessorTest`를 작성하여 `ApiAnalyzerProcessor`의 핵심 기능(Spring Boot 컨트롤러의 API 메타데이터 추출 및 `api-meta.json` 생성)을 검증하는 테스트 코드를 작성하고 성공적으로 실행 확인 완료.
+
+### **2025년 11월 20일 (오후)**
+
+-   **테스트 코드 컴파일 오류 해결**: `ApiAnalyzerProcessorTest`의 문법 오류를 수정했습니다.
+-   **빌드 실패 문제 해결**: Gradle 빌드 시 파일 권한 문제로 인해 발생하던 빌드 실패 현상을 해결했습니다. 이로써 프로젝트가 성공적으로 빌드되는 것을 확인했습니다.
+
+### **2025년 11월 20일 (저녁)**
+
+-   **Java 및 Spring Boot 버전 업그레이드**: 프로젝트의 Java 버전을 21로, Spring Boot 버전을 3.3.5로 업그레이드했습니다.
+-   **Gradle 빌드 구성 수정**: 버전 업그레이드에 따른 빌드 문제를 해결하기 위해 각 모듈의 `build.gradle` 파일을 수정하고 의존성을 정리했습니다.
+
+### **2025년 11월 20일 (심야)**
+
+-   **k6 함수 생성기 개발 (`K6ScriptGenerator.java`):**
+    *   `api-meta.json` 메타데이터 파일을 읽어 k6 JavaScript 파일(예: `simple-controller.js`)을 생성하는 핵심 로직 구현.
+    *   생성된 파일명의 중복(패키지명 포함) 문제를 해결하여 단순 클래스명 기반의 파일명(`simple-controller.js`)으로 생성하도록 수정.
+    *   생성된 k6 스크립트의 개행 및 문자열 포맷팅 문제 해결 중. 테스트 코드와의 불일치로 인해 여러 차례 수정이 발생했습니다. (현재 테스트 실패)
+-   **k6 함수 생성기 테스트 (`K6ScriptGeneratorTest.java`):**
+    *   `K6ScriptGenerator`의 기능을 검증하기 위한 테스트 코드 작성.
+    *   생성된 스크립트와 예상 스크립트 간의 개행 문자 불일치로 인해 많은 디버깅 작업 진행 중. `assertEquals` 실패 원인 파악을 위해 상세한 문자 단위 비교 로직을 추가하는 등의 노력을 기울였으며, 현재 테스트는 여전히 실패하고 있습니다.
+-   **Gradle 빌드 환경 개선:**
+    *   `K6ScriptGenerator`를 직접 실행하고 클래스패스를 디버깅하기 위해 `load-test-core/build.gradle`에 `printClasspath` 태스크 추가 (이후 `main` 메서드 제거와 함께 정리됨).
+    *   `load-test-gradle-plugin` 모듈의 `build.gradle` 파일에 `groovy` 플러그인 및 `gradleApi()` 의존성 추가.
+    *   `generateK6Scripts` Gradle Task의 초기 구조 정의.
+    *   `sample-app` 모듈의 `build.gradle` 파일에서 Spring Boot 플러그인 버전 및 `io.spring.dependency-management` 플러그인 중복 적용 문제 해결.
+    *   다양한 `build.gradle` 파일에서 발생한 의존성 해결 및 문법 오류 수정.
+
