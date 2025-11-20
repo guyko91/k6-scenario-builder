@@ -1,15 +1,7 @@
 plugins {
     id 'groovy'
     id 'java-gradle-plugin'
-    id 'io.spring.dependency-management'
 }
-
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.boot:spring-boot-dependencies:3.3.5"
-    }
-}
-
 
 dependencies {
     implementation project(':load-test-core')
@@ -24,3 +16,4 @@ gradlePlugin {
         }
     }
 }
+

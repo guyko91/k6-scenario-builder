@@ -6,12 +6,14 @@ plugins {
 
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
 
     group = 'com.gemini.k6'
     version = '0.0.1-SNAPSHOT'
 
     repositories {
         mavenCentral()
+        mavenLocal()
     }
 
     dependencyManagement {

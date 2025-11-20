@@ -1,12 +1,5 @@
 plugins {
     id 'java-library'
-    id 'io.spring.dependency-management'
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.boot:spring-boot-dependencies:3.3.5"
-    }
 }
 
 repositories {
@@ -14,11 +7,8 @@ repositories {
 }
 
 dependencies {
-    // Spring Web for annotations like @RestController, @GetMapping
-    implementation 'org.springframework:spring-web'
-
-    // Jackson for JSON processing
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+    // Spring Boot Starter Web includes Spring Web and Jackson
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
     // Lombok for boilerplate reduction
     compileOnly 'org.projectlombok:lombok:1.18.32'
@@ -38,10 +28,4 @@ dependencies {
 // Ensure annotation processors are run and their output is correctly placed.
 tasks.named('compileJava') {
     options.annotationProcessorGeneratedSourcesDirectory = layout.buildDirectory.dir("generated/sources/annotationProcessor/java/main").get().asFile
-}
-
-tasks.register('printClasspath') {
-    doLast {
-        println configurations.runtimeClasspath.asPath
-    }
 }
