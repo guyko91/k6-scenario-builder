@@ -8,7 +8,7 @@ services:
       - .:/home/gradle/project
       # Cache Gradle dependencies
       - gradle-cache:/home/gradle/.gradle
-    command: gradle :sample-app:clean :sample-app:build --info
+    command: gradle :load-test-core:clean :load-test-core:build :load-test-core:test --info
 
 volumes:
   gradle-cache:

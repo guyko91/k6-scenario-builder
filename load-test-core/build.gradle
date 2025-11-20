@@ -31,6 +31,9 @@ dependencies {
 
     // Testing
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+    testImplementation 'com.google.testing.compile:compile-testing:0.21.0'
 }
 
 // Ensure annotation processors are run and their output is correctly placed.

@@ -10,6 +10,8 @@
 5. 무조건 코드 수정하지 말고, 수정 방향을 확인받고 진행
 6. **진행 사항은 GEMINI.md 파일에 다음 세션과의 연속성을 위해 자세하게 정리**
 7. docker compose 기반의 프로젝트로 구성한다7. docker compose 기반의 프로젝트로 구성한다7. docker compose 기반의 프로젝트로 구성한다7. docker compose 기반의 프로젝트로 구성한다7. docker compose 기반의 프로젝트로 구성한다7. docker compose 기반의 프로젝트로 구성한다7. docker compose 기반의 프로젝트로 구성한다
+8. unit test 는 필수로 작성한다. (그 외 테스트는 지시에 의해 작성한다.)
+9. 지나친 주석은 작성하지 않으며, 주석 및 텍스트 작성 시, 이모지는 사용하지 않고 가독성 좋게 작성한다.
 
 ## 프로젝트 목표
 
@@ -108,3 +110,4 @@
     -   `AutoService`를 이용하여 프로세서 자동 등록 및 실행 확인 완료.
     -   `sample-app` 모듈의 Spring Boot 컨트롤러에 대한 메타데이터(`api-meta.json`)를 성공적으로 추출 및 생성 확인 완료.
     -   API 메타데이터를 저장하기 위한 `ApiControllerInfo`, `ApiMethodInfo`, `ApiParameterInfo` 데이터 클래스 정의 완료.
+    -   **테스트 코드 작성 완료**: `ApiAnalyzerProcessorTest`를 작성하여 `ApiAnalyzerProcessor`의 핵심 기능(Spring Boot 컨트롤러의 API 메타데이터 추출 및 `api-meta.json` 생성)을 검증하는 테스트 코드를 작성하고 성공적으로 실행 확인 완료.

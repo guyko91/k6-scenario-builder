@@ -42,6 +42,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @AutoService(Processor.class)
 public class ApiAnalyzerProcessor extends AbstractProcessor {
@@ -204,14 +205,14 @@ public class ApiAnalyzerProcessor extends AbstractProcessor {
 
     @Override
     public Set<String> getSupportedAnnotationTypes() {
-        return Arrays.asList(
+        return Stream.of(
                 RestController.class.getName(),
                 RequestMapping.class.getName(),
                 GetMapping.class.getName(),
                 PostMapping.class.getName(),
                 PutMapping.class.getName(),
                 DeleteMapping.class.getName()
-        ).stream().collect(Collectors.toSet());
+        ).collect(Collectors.toSet());
     }
 
     @Override
